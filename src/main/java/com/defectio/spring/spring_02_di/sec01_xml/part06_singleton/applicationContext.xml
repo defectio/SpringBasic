@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="injectionBean" class="sec01_xml.part06_singleton.InjectionBean" />
+
+	<!-- scope를 명시하지 않으면 bean은 singleton으로 생성됨 -->
+	<bean id="singletonBean" class="sec01_xml.part06_singleton.DependencyBean">
+		<constructor-arg ref="injectionBean" />
+	</bean>
+
+	<!-- scope="prototype"을 명시하여 bean을 singleton이 아닌 객체로 생성함 -->
+	<bean id="noSingletonBean" class="sec01_xml.part06_singleton.DependencyBean" scope="prototype">
+		<constructor-arg ref="injectionBean" />
+	</bean>
+
+</beans>

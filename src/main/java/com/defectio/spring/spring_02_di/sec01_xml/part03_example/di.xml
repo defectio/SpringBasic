@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  
+		User user = new User("kim", "1234");
+		ServiceImp svc = new ServiceImp(user);
+	-->
+	<!-- user:객체 타입.. 참조타입(객체타입)은 ref -->
+	
+	<!-- [1] User 빈 설정 -->
+	<bean id="user" class="sec01_xml.part03_example.User">
+		<!-- 매개변수의 타입이 동일할 경우 선언한 순서대로 대입된다. -->
+		<constructor-arg value="kim" />
+		<constructor-arg value="1234" />
+	</bean>
+	
+	<!-- [2] ServiceImp 빈 설정 -->
+	<!-- ServiceImp에 User 주입한다. -->
+	<bean id="svc" class="sec01_xml.part03_example.ServiceImp">
+		<constructor-arg ref="user" />
+	</bean>
+	
+</beans>

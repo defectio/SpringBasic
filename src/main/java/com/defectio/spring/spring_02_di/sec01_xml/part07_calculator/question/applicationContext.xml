@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 	Bean 객체 작성 -->
+	<bean id="assemble" class="sec01_xml.part06_calculator.question.CalAssembler">
+		<constructor-arg ref="myCalc" />
+		<constructor-arg ref="calAdd" />
+		<constructor-arg ref="calSub" />
+		<constructor-arg ref="calMul" />
+		<constructor-arg ref="calDiv" />
+	</bean>
+	
+	<bean id="myCalc" class="sec01_xml.part06_calculator.question.MyCalculator" />
+	<bean id="calAdd" class="sec01_xml.part06_calculator.question.CalAdd"/>
+	<bean id="calSub" class="sec01_xml.part06_calculator.question.CalSub"/>
+	<bean id="calMul" class="sec01_xml.part06_calculator.question.CalMul"/>
+	<bean id="calDiv" class="sec01_xml.part06_calculator.question.CalDiv"/>
+	
+</beans>  

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  MysqlImp mysql = new MysqlImp();-->
+	<bean id="mysql" class="sec01_xml.part01_basic.MysqlImp" />
+	
+	<!-- OracleImp oracle = new OracleImp(); -->
+	<bean id="oracle" class="sec01_xml.part01_basic.OracleImp" />
+	
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- @Autowired, @Resource를 이용하기 위한 태그 -->
+	<!-- mvc:annotation-driven이 bean 정의 파일에 선언되어 있으면 생략 가능 -->
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- 	animal 타입 Bean 객체가 2개 -->
+	<!-- [방법 1] @Qualifier의 value에 지정된 값과 동일한 id를 갖는 bean 객체를 주입한다. -->
+	<bean id="cat" class="sec02_annotation.part03_Qualifier.Cat">
+		<property name="name" value="bella" />
+	</bean>
+
+	<bean id="dog" class="sec02_annotation.part03_Qualifier.Dog">
+		<property name="name" value="바둑이" />
+		<!-- [방법 2] qualifier 태그 지정 -->
+		<qualifier value="qf_dog" />
+	</bean>
+	
+	<bean id="petOwner" class="sec02_annotation.part03_Qualifier.PetOwner" />
+	
+</beans>

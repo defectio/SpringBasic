@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- [@Autowired 적용 순서] -->
+	<!-- [1] @Autowired가 선언된 타입과 같은 bean 객체가 1개일 경우, 해당 객체를 검색해서 주입한다. -->
+	<!-- @Autowired에 선언된 타입의 하위 타입도 자동타입변환 되어 주입 된다. -->
+<!-- 	<bean id="dog" class="sec02_annotation.part01_Autowired.Dog"> -->
+<!-- 		<property name="name" value="바둑이" /> -->
+<!-- 	</bean> -->
+	
+	<!-- [2] @Autowired가 선언된 타입과 같은 bean 객체가 2개 이상 일 경우, @Autowired에 선언된 필드명과 동일한 id를 갖는 bean 객체가 주입된다.-->
+	<bean id="dog" class="sec02_annotation.part01_Autowired.Dog">
+		<property name="name" value="바둑이" />
+	</bean>
+	<bean id="animal" class="sec02_annotation.part01_Autowired.Cat">
+		<property name="name" value="bella" />
+	</bean>
+
+	<!-- Autowired에 지정된 주입될 객체의 타입과 동일한 bean 객체가 빈 설정 파일에 여러개 있다면(Qualifier 선언 없을 경우) -->
+	
+	<bean id="petOwner" class="sec02_annotation.part01_Autowired.PetOwner">
+		<!-- bean 설정 xml 파일에서 의존성 주입하는 방법  -->
+		<!-- 지금은 어노테이션으로 주입할 거라 이거 필요 없음. PetOwner객체에 생성자나 setter 도 필요 없음. -->
+		
+		<!-- [1] 생성자 -->
+		<!-- <constructor-arg ref="dog"/> or -->
+		<!-- <constructor-arg ref="cat" /> -->
+		
+		<!-- [2] setter -->
+		<!-- <property name="animal" ref="cat" />  or -->
+		<!-- <property name="animal" ref="dog" /> -->
+	</bean>
+
+	<!-- @Autowired, @Resource를 이용하기 위한 태그 -->
+	<!-- [선언방법] -->
+	<!-- (1) Namespaces 탭에서 context 추가함. -> context 탭 추가됨. -->
+	<!-- (2) context 탭에서 beans 우클릭  -->
+	<!-- (3) "Insert <context:annotation-config> element" 선택 -->
+	<!-- (4) Source 탭으로 이동하면 자동으로 추가되어 있음. -->
+	<context:annotation-config />
+	<!-- mvc:annotation-driven이 bean 정의 파일에 선언되어 있으면 생략 가능 -->
+	
+</beans>

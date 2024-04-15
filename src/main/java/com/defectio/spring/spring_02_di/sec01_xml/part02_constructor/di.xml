@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 생성자를 이용한 의존관계 설정 -->
+	<!-- value:기본 데이터 타입/ ref:참조 데이터 타입(객체 주입) -->
+	
+	<!-- [1] 기본생성자로 생성 -->
+	<!-- ServiceImp svc = new ServiceImp(); -->
+	<bean id="svc" class="sec01_xml.part02_constructor.ServiceImp" /> 
+	
+	<!-- [2] 생성자 매개변수 name으로 생성 -->
+	<!-- ServiceImp svc1 = new ServiceImp("홍길동") -->
+	<bean id="svc1" class="sec01_xml.part02_constructor.ServiceImp">
+		<!-- 방식(1)
+			<constructor-arg>
+					<value>홍길동</value>
+			</constructor-arg> 
+		-->
+		<!-- 방식(2) -->
+		<constructor-arg value="홍길동" />
+	</bean>
+	
+	<!-- [3] 생성자 매개변수 2개로 생성(int age, String dept) -->
+	<!-- ServiceImp svc2 = new ServiceImp(30, "sales");  -->
+	<bean id="svc2" class="sec01_xml.part02_constructor.ServiceImp">
+		<!-- type : 넘기는 값에 대한 타입 지정. --> 
+		<!-- 타입을 명시 안하면 ServiceImp에 정의된 생성자 타입으로 매개변수 순서에 맞게 자동으로 들어감  -->
+		<!--	<constructor-arg value="30" /> -->
+		<!-- 	<constructor-arg value="sales" /> -->
+		
+		<!-- 매개변수의 개수가 동일한 생성자가 있다면 type을 명시해줘야함. (타입 순서로 주입되먜  -->
+		<!-- 동일한 타입의 매개변수가 있다면 생성자에 명시된 순서대로 주입됨  -->
+		<constructor-arg value="sales" type="String" />
+		<constructor-arg value="30" type="int"/>
+	</bean>	
+	
+	<!-- [4] 객체타입(참조 타입)으로 생성 - ref 참조 데이터 타입(객체 주입할 때) -->
+	<!-- Random ran = new Random(); -->
+	<bean id="ran" class="java.util.Random" />
+	 
+	<!-- ServiceImp svc = new ServiceImp(ran); -->
+	<bean id="svc3" class="sec01_xml.part02_constructor.ServiceImp">
+		<!-- 
+			<constructor-arg>
+	 			<ref bean="ran" />
+	 		</constructor-arg> 
+	 	-->
+	 	<constructor-arg ref="ran" />
+	</bean>
+	
+</beans>
