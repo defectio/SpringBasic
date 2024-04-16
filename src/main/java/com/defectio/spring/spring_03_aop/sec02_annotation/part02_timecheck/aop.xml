@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- annotataion을 이용해서 advice 설정할때 명시한다.  -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!--[1] Target : 핵심관심사항 빈 선언 -->
+	<!-- 핵심로직을 구현한 클래스를 빈으로 설정 -->
+	<!-- target:advice가 적용되는 클래스 -->
+	<bean id="svc" class="sec02_annotation.part02_timecheck.ServiceImp" />
+	
+	<!-- [2] Aspect : 공통관심사항 빈 선언 -->
+	<!-- 공통로직을 구현한 클래스를 빈으로 설정 -->
+	<!-- aspect:구현하고자 하는 보조기능(공통기능)-->
+	<bean id="common" class="sec02_annotation.part02_timecheck.StopWatchAspect" />
+
+	<!-- [3] advice 설정  -->
+	<!-- 	<aop:config> -->
+	<!-- 		<aop:aspect ref="common"> -->
+	<!-- 			<aop:around method="process" pointcut="execution(* sec01_xml.part02_timecheck.ServiceImp.prn())"/> -->
+	<!-- 		</aop:aspect> -->
+	<!-- 	</aop:config> -->
+	
+</beans>
