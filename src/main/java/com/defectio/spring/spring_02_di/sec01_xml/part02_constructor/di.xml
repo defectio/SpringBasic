@@ -8,11 +8,11 @@
 	
 	<!-- [1] 기본생성자로 생성 -->
 	<!-- ServiceImp svc = new ServiceImp(); -->
-	<bean id="svc" class="sec01_xml.part02_constructor.ServiceImp" /> 
+	<bean id="svc" class="com.defectio.spring.spring_02_di.sec01_xml.part02_constructor.ServiceImp" /> 
 	
 	<!-- [2] 생성자 매개변수 name으로 생성 -->
 	<!-- ServiceImp svc1 = new ServiceImp("홍길동") -->
-	<bean id="svc1" class="sec01_xml.part02_constructor.ServiceImp">
+	<bean id="svc1" class="com.defectio.spring.spring_02_di.sec01_xml.part02_constructor.ServiceImp">
 		<!-- 방식(1)
 			<constructor-arg>
 					<value>홍길동</value>
@@ -24,7 +24,7 @@
 	
 	<!-- [3] 생성자 매개변수 2개로 생성(int age, String dept) -->
 	<!-- ServiceImp svc2 = new ServiceImp(30, "sales");  -->
-	<bean id="svc2" class="sec01_xml.part02_constructor.ServiceImp">
+	<bean id="svc2" class="com.defectio.spring.spring_02_di.sec01_xml.part02_constructor.ServiceImp">
 		<!-- type : 넘기는 값에 대한 타입 지정. --> 
 		<!-- 타입을 명시 안하면 ServiceImp에 정의된 생성자 타입으로 매개변수 순서에 맞게 자동으로 들어감  -->
 		<!--	<constructor-arg value="30" /> -->
@@ -41,7 +41,7 @@
 	<bean id="ran" class="java.util.Random" />
 	 
 	<!-- ServiceImp svc = new ServiceImp(ran); -->
-	<bean id="svc3" class="sec01_xml.part02_constructor.ServiceImp">
+	<bean id="svc3" class="com.defectio.spring.spring_02_di.sec01_xml.part02_constructor.ServiceImp">
 		<!-- 
 			<constructor-arg>
 	 			<ref bean="ran" />

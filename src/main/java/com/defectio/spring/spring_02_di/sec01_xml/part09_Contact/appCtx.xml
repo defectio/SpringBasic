@@ -11,7 +11,7 @@
 	<!-- 	(3) registerService, searchService의 <constructor-arg> 태그 제거 -->
 	<context:annotation-config/>
 
-	<bean id="initSampleData" class="sec01_xml.part09_Contact.utils.InitSampleData">
+	<bean id="initSampleData" class="com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.utils.InitSampleData">
 		<property name="names">
 			<array>
 				<value>류현진</value>
@@ -28,16 +28,16 @@
 		</property>
 	</bean>
 
-	<bean id="contactDao" class="sec01_xml.part09_Contact.dao.ContactDao" />
+	<bean id="contactDao" class="com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.dao.ContactDao" />
 	
 <!-- 	<bean id="registerService" class="sec01_xml.part09_Contact.service.ContactRegisterService" > -->
 <!-- 		<constructor-arg ref="contactDao" />   -->
 <!-- 	</bean> -->
-	<bean id="registerService" class="sec01_xml.part09_Contact.service.ContactRegisterService" />
+	<bean id="registerService" class="com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.service.ContactRegisterService" />
 	
 <!-- 	<bean id="searchService" class="sec01_xml.part09_Contact.service.ContactSearchService" > -->
 <!-- 		<constructor-arg ref="contactDao" /> -->
 <!-- 	</bean> -->
-	<bean id="searchService" class="sec01_xml.part09_Contact.service.ContactSearchService" />
+	<bean id="searchService" class="com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.service.ContactSearchService" />
 	
 </beans>

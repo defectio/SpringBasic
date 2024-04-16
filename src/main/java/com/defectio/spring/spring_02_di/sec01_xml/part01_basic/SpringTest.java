@@ -3,6 +3,8 @@ package com.defectio.spring.spring_02_di.sec01_xml.part01_basic;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.defectio.spring.spring_02_di.XmlUtils;
+
 //컨테이너는 여러개 제공되는데 다 알 필요는 없고 다음 2개만 잘 알아 놓을 것.
 //1. ApplicationContext : container 생성될 때(ApplicationContext 객체 생성 할 때) -> 설정파일에 있는 빈들이 실행됨(생성됨)
 //2. WebApplicationContext : WAS(tomcat) 실행될 때 -> 설정파일에 있는 빈들이 실행됨.(생성됨)
@@ -25,16 +27,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *   			  				  (3) java Config
  *  		- 왜 사용하는지? : 객체간의 결합도를 낮추기 위해서 사용함 -> 그로 인한 이점으로 ......유지보수 용이...??
  */
-
 public class SpringTest {
 
 	public static void main(String[] args) {
-		// ClassPath 
-		String path = "sec01_xml/part01_basic/di.xml";
+
+		String pkgName = XmlUtils.getPackageName(SpringTest.class);
+		String path = pkgName + "/di.xml";
 
 		//ApplicationContext(컨테이너) 객체 생성(xml파일로 생성함)
-		//		-> part01/di.xml에 설정된 빈들이 모두 생성됨.(빈 id가 mysql, oracle 인 빈들이 생성됨) 
+		//		-> path에 설정된 빈들이 모두 생성됨.(빈 id가 mysql, oracle 인 빈들이 생성됨) 
 		//MysqlImp, OracleImp 객체를 직접생성하지 않음(IoC, Inversion of Control) -> 객체 생성 및 주입을 개발자가 아닌 IoC 컨테이너에서 수행한다.
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(path);
 		
 		//context의 getBean() 메소드를 이용해서 id가 mysql인 빈을 가져옴(Service에 주입시킴)

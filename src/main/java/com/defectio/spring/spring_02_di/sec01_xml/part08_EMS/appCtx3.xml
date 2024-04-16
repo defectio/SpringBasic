@@ -5,7 +5,7 @@
 
 	<!-- EMSInformationService 빈 -->
 	<!-- List 타입 필드 주입할 경우 -->
-	<bean id="eMSInformationService" class="sec01_xml.part08_EMS.member.service.EMSInformationService">
+	<bean id="eMSInformationService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.EMSInformationService">
 		<property name="info" value="Education Management System program was developed in 2022." />
 		<property name="copyRight" value="COPYRIGHT(C) 2022 EMS CO., LTD. ALL RIGHT RESERVED. CONTACT MASTER FOR MORE INFORMATION." />
 		<property name="ver" value="The version is 1.0" />

@@ -3,6 +3,7 @@ package com.defectio.spring.spring_02_di.sec01_xml.part09_Contact;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.defectio.spring.spring_02_di.XmlUtils;
 import com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.service.ContactRegisterService;
 import com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.service.ContactSearchService;
 import com.defectio.spring.spring_02_di.sec01_xml.part09_Contact.utils.InitSampleData;
@@ -11,10 +12,12 @@ public class MainClass {
 
 	public static void main(String[] args) {
 
+		String pkgName = XmlUtils.getPackageName(MainClass.class);
+		String path = pkgName + "/appCtx.xml";
+		
 		/**
 		 * IoC 컨테이너 생성
 		 */
-		String path = "sec01_xml/part09_Contact/appCtx.xml";
 		@SuppressWarnings("resource")
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(path);
 

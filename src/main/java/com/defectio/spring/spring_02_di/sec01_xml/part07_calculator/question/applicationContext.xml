@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 	Bean 객체 작성 -->
-	<bean id="assemble" class="sec01_xml.part06_calculator.question.CalAssembler">
+	<bean id="assemble" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.CalAssembler">
 		<constructor-arg ref="myCalc" />
 		<constructor-arg ref="calAdd" />
 		<constructor-arg ref="calSub" />
@@ -13,10 +13,10 @@
 		<constructor-arg ref="calDiv" />
 	</bean>
 	
-	<bean id="myCalc" class="sec01_xml.part06_calculator.question.MyCalculator" />
-	<bean id="calAdd" class="sec01_xml.part06_calculator.question.CalAdd"/>
-	<bean id="calSub" class="sec01_xml.part06_calculator.question.CalSub"/>
-	<bean id="calMul" class="sec01_xml.part06_calculator.question.CalMul"/>
-	<bean id="calDiv" class="sec01_xml.part06_calculator.question.CalDiv"/>
+	<bean id="myCalc" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.MyCalculator" />
+	<bean id="calAdd" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.CalAdd"/>
+	<bean id="calSub" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.CalSub"/>
+	<bean id="calMul" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.CalMul"/>
+	<bean id="calDiv" class="com.defectio.spring.spring_02_di.sec01_xml.part07_calculator.question.CalDiv"/>
 	
 </beans>  

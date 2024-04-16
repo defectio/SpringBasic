@@ -5,7 +5,7 @@
 
 	<!-- InitSampleData 빈 -->
 	<!-- 	property : setter로 의존성 주입 -->
-	<bean id="initSampleData" class="sec01_xml.part08_EMS.utils.InitSampleData">
+	<bean id="initSampleData" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.utils.InitSampleData">
 		<property name="sNums">
 			<array>
 				<value>hbs001</value>
@@ -74,37 +74,37 @@
 
 	<!-- StudentDao 빈 -->
 	<!-- constructor-agr 없으면 기본 생성자로 bean 생성됨 -->
-	<bean id="studentDao" class="sec01_xml.part08_EMS.member.dao.StudentDao" />
+	<bean id="studentDao" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.dao.StudentDao" />
 
 	<!-- StudentRegisterService 빈 생성 -->
 	<!-- 	constructor-arg 태그 없으면 기본생성자가 호출되어야 하는데 StudentRegisterService에는 기본 생성자가 없어서 오류 발생-->
-	<bean id="studentRegisterService" class="sec01_xml.part08_EMS.member.service.StudentRegisterService">
+	<bean id="studentRegisterService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.StudentRegisterService">
 		<!-- 	<constructor-arg ref="studentDao" /> -->
 		<constructor-arg ref="studentDao" />
 	</bean>
 
 	<!-- StudentModifyService 빈 생성 -->
-	<bean id="studentModifyService" class="sec01_xml.part08_EMS.member.service.StudentModifyService">
+	<bean id="studentModifyService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.StudentModifyService">
 		<constructor-arg ref="studentDao" />
 	</bean>
 
 	<!-- StudentDeleteService 빈 생성 -->
-	<bean id="studentDeleteService" class="sec01_xml.part08_EMS.member.service.StudentDeleteService">
+	<bean id="studentDeleteService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.StudentDeleteService">
 		<constructor-arg ref="studentDao" />
 	</bean>
 
 	<!-- StudentSelectService 빈 생성 -->
-	<bean id="studentSelectService" class="sec01_xml.part08_EMS.member.service.StudentSelectService">
+	<bean id="studentSelectService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.StudentSelectService">
 		<constructor-arg ref="studentDao" />
 	</bean>
 
 	<!-- StudentAllSelectService 빈 생성 -->
-	<bean id="studentAllSelectService" class="sec01_xml.part08_EMS.member.service.StudentAllSelectService">
+	<bean id="studentAllSelectService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.StudentAllSelectService">
 		<constructor-arg ref="studentDao" />
 	</bean>
 
 	<!-- PrintStudentInformationService 빈 생성 -->
-	<bean id="printStudentInformationService" class="sec01_xml.part08_EMS.member.service.PrintStudentInformationService">
+	<bean id="printStudentInformationService" class="com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.PrintStudentInformationService">
 		<constructor-arg ref="studentAllSelectService" />
 	</bean>
 

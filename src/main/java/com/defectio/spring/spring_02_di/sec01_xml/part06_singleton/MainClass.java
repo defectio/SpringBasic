@@ -3,15 +3,19 @@ package com.defectio.spring.spring_02_di.sec01_xml.part06_singleton;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.defectio.spring.spring_02_di.XmlUtils;
+
 public class MainClass {
 
 	public static void main(String[] args) {
 
-		String path = "sec01_xml/part06_singleton/applicationContext.xml";
+		String pkgName = XmlUtils.getPackageName(MainClass.class);
+		String path = pkgName + "/applicationContext.xml";
 		
 		/**
 		 * IoC 컨테이너 생성
 		 */
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(path);
 		System.out.println("==========컨테이너 생성 완료==========");
 

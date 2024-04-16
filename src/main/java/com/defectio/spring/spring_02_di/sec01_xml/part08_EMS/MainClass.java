@@ -3,6 +3,7 @@ package com.defectio.spring.spring_02_di.sec01_xml.part08_EMS;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.defectio.spring.spring_02_di.XmlUtils;
 import com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.Student;
 import com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.EMSInformationService;
 import com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.member.service.PrintStudentInformationService;
@@ -14,34 +15,39 @@ import com.defectio.spring.spring_02_di.sec01_xml.part08_EMS.utils.InitSampleDat
 
 public class MainClass {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		/**
 		 * IoC 컨테이너 생성
 		 */
-//		String path = "sec01_xml/part08_EMS/applicationContext.xml";
+		String pkgName = XmlUtils.getPackageName(MainClass.class);
+//		String path = pkgName + "/applicationContext.xml";
+		
 //		ApplicationContext ctx = new ClassPathXmlApplicationContext(path);
 
 		/**
 		 * [방식 1]. 파일을 분리해서 관리
 		 * applicationContext.xml 파일 분리 -> appCtx1.xml, appCtx2.xml, appCtx3.xml
 		 */
-//		String path1 = "sec01_xml/part08_EMS/appCtx1.xml";
-//		String path2 = "sec01_xml/part08_EMS/appCtx2.xml";
-//		String path3 = "sec01_xml/part08_EMS/appCtx3.xml";
+//		String path1 = pkgName + "/appCtx1.xml";
+//		String path2 = pkgName + "/appCtx2.xml";
+//		String path3 = pkgName + "/appCtx3.xml";
 //		ApplicationContext ctx = new ClassPathXmlApplicationContext(path1, path2, path3);
 
         /**
          * appCtx1.xml, appCtx2.xml, appCtx3.xml을 가독성 좋게 String[] 배열로 변경
          */
-//        String[] appCtxs = {"sec01_xml/part08_EMS/appCtx1.xml", "sec01_xml/part08_EMS/appCtx2.xml", "sec01_xml/part08_EMS/appCtx3.xml"}; 
+//        String[] appCtxs = {
+//        		pkgName + "/appCtx1.xml", 
+//        		pkgName + "/appCtx2.xml", 
+//        		pkgName + "/appCtx3.xml"}; 
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext(appCtxs);
 
 		/**
 		 * [방식 2]. xml 파일 안에서 imort 사용
 		 * import 방식으로 변경
 		 */
-		String importPath = "sec01_xml/part08_EMS/appCtxImport.xml";
-		@SuppressWarnings("resource")
+		String importPath = pkgName + "/appCtxImport.xml";
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(importPath);
 
 		// 샘플 데이터

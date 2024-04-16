@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!--  MysqlImp mysql = new MysqlImp();-->
-	<bean id="mysql" class="sec01_xml.part01_basic.MysqlImp" />
+	<bean id="mysql" class="com.defectio.spring.spring_02_di.sec01_xml.part01_basic.MysqlImp" />
 	
 	<!-- OracleImp oracle = new OracleImp(); -->
-	<bean id="oracle" class="sec01_xml.part01_basic.OracleImp" />
+	<bean id="oracle" class="com.defectio.spring.spring_02_di.sec01_xml.part01_basic.OracleImp" />
 	
 </beans>

@@ -3,11 +3,14 @@ package com.defectio.spring.spring_02_di.sec01_xml.part02_constructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.defectio.spring.spring_02_di.XmlUtils;
+
 public class SpringTest {
 
 	public static void main(String[] args) {
 		// ClassPath
-		String path = "sec01_xml/part02_constructor/di.xml";
+		String pkgName = XmlUtils.getPackageName(SpringTest.class);
+		String path = pkgName + "/di.xml";
 		
 		/**
 		 * [ApplicationContext 컨테이너] 생성 
@@ -15,6 +18,7 @@ public class SpringTest {
 		 * 
 		 * 컨테이너 생성되고 나서 part02_constructor/di.xml에 설정되어 있던 bean 객체들이 전부 생성됨.
 		 */
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(path);
 		System.out.println("==========[컨테이너 생성 완료]==========");
 		
