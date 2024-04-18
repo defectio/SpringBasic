@@ -1,10 +1,12 @@
 package com.defectio.spring.spring_02_di.sec02_annotation.part01_Autowired;
 
+/**
+ * Animal 인터페이스를 구현한 Cat
+ */
 public class Cat implements Animal {
 	
 	private String name;
 	
-	// setter
 	public void setName(String name) {
 		this.name = name;
 	}

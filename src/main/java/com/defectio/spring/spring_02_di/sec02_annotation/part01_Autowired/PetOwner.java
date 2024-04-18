@@ -23,10 +23,15 @@ public class PetOwner {
 	
 //	@Autowired -> context.getBean("petOwner")로 가져올 수 없음. NullPointerException
 	@Autowired  // animal.xml에서 Animal 타입으로 선언된 bean 객체를 자동 주입
-	// @Autowired(required=false)  // -> 주입 대상 Bean 객체가 없더라도 오류 발생시키지 않음. 설정 되어 있다면 자동 주입됨 
+//	@Autowired(required=false)  // -> 주입 대상 Bean 객체가 없더라도 오류 발생시키지 않음. Bean객체가 있다면 자동 주입됨 
+//	@Nullable
 	private Animal animal;
 	
-//	@Autowired  // 생성자에 사용 가능 
+	public PetOwner() {
+
+	}
+	
+//	@Autowired  // 생성자에 사용 가능
 	public PetOwner(Animal animal) {
 		this.animal = animal;
 	}
@@ -36,8 +41,17 @@ public class PetOwner {
 		this.animal = animal;
 	}
 	
+	/**
+	 *  Animal 타입의 sound() 메소드 호출 
+	 *  Animal 인터페이스를 구현한 모든 객체가 대입될 수 있음
+	 *  주입되는 구현 객체에 따라 호출 결과가 달라짐
+	 */
 	public void play() {
-		animal.sound();
+		if (this.animal != null) {
+			animal.sound();
+		} else {
+			System.out.println("animal 객체가 없습니다.");
+		}
 	}
 	
 } //end class
