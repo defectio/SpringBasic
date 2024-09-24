@@ -30,7 +30,7 @@
 		<!--	<constructor-arg value="30" /> -->
 		<!-- 	<constructor-arg value="sales" /> -->
 		
-		<!-- 매개변수의 개수가 동일한 생성자가 있다면 type을 명시해줘야함. (타입 순서로 주입되먜  -->
+		<!-- 매개변수의 개수가 동일한 생성자가 있다면 type을 명시해줘야함. (타입 순서로 주입됨)  -->
 		<!-- 동일한 타입의 매개변수가 있다면 생성자에 명시된 순서대로 주입됨  -->
 		<constructor-arg value="sales" type="String" />
 		<constructor-arg value="30" type="int"/>
