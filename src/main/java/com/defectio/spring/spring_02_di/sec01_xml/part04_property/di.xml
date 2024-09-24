@@ -9,8 +9,8 @@
 	<!-- property의 name 속성 : setter 이름 -->
 	
 	<!-- 
-			ServiceImp svc1 = new ServiceImp();
-			svc1.setName("홍길동");  
+		ServiceImp svc1 = new ServiceImp();
+		svc1.setName("홍길동");  
 	 -->
 	<bean id="svc1" class="com.defectio.spring.spring_02_di.sec01_xml.part04_property.ServiceImp">
 	 	<!-- "name"은 set 뒤에 붙는 인자값. 즉 필드에서 지정한 변수. setter이름이 name인 것을 호출한다. --> 
