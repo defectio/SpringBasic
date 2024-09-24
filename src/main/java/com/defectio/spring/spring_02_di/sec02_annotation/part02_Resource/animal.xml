@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<bean id="dog" class="sec02_annotation.part02_Resource.Dog">
+	<bean id="dog" class="com.defectio.spring.spring_02_di.sec02_annotation.part02_Resource.Dog">
 		<property name="name" value="atom" />
 	</bean>
 
@@ -13,12 +13,12 @@
 	<!-- (2) Animal 타입과 같은 빈 객체를 찾는다. (i)1개이면 그 객체를 주입한다. 끝. (ii)2개 이상이면 (3) 으로... -->
 	<!-- (3) @Resource를 지정한 변수명과 같은 id를 가진 bean 객체를 찾는다. -->
 	<!--  결론 : id가 animal인 bean 객체를 찾아서 주입한다. -->
-	<bean id="cat" class="sec02_annotation.part02_Resource.Cat">
-<!-- 	<bean id="animal" class="sec02_annotation.part02_Resource.Cat"> -->
+<!-- 	<bean id="animal" class="com.defectio.spring.spring_02_di.sec02_annotation.part02_Resource.Cat"> -->
+	<bean id="cat" class="com.defectio.spring.spring_02_di.sec02_annotation.part02_Resource.Cat">
 		<property name="name" value="bella" />
 	</bean>
 
-	<bean id="petOwner" class="sec02_annotation.part02_Resource.PetOwner">
+	<bean id="petOwner" class="com.defectio.spring.spring_02_di.sec02_annotation.part02_Resource.PetOwner">
 		<!-- bean 설정 xml 파일에서 의존성 주입하는 방법  -->
 		<!-- 지금은 @Resource 어노테이션으로 주입할 거라 이거 필요 없음. PetOwner객체에 생성자나 setter 도 필요 없음. -->
 		<!-- @Resource 어노테이션은 필드나 setter에 선언가능. 생성자 불가능. -->

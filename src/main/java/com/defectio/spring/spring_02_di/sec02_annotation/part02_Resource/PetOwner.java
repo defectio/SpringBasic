@@ -34,7 +34,11 @@ public class PetOwner {
 //	@Resource
 	private Animal animal;
 
-	// @Resource(name="dog") // -> The annotation @Resource is disallowed for this location
+	public PetOwner() {
+		// TODO Auto-generated constructor stub
+	}
+	
+//	 @Resource(name="dog") // -> The annotation @Resource is disallowed for this location
 	// 생성자에 @Resource 사용 불가
 	public PetOwner(Animal animal) {
 		this.animal = animal;

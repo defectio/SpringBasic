@@ -1,5 +1,8 @@
 package com.defectio.spring.spring_02_di.sec02_annotation.part02_Resource;
 
+/**
+ * Animal 인터페이스를 구현한 Dog
+ */
 public class Dog implements Animal{
 
 	private String name;
