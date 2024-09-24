@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 
-				MemDaoImp memDao = new MemDaoImp();
-				ServiceImp svc = new ServiceImp();
-				svc.setMemDao(memDao);
+		MemDaoImp memDao = new MemDaoImp();
+		ServiceImp svc = new ServiceImp();
+		svc.setMemDao(memDao);
 	 -->
 	
 	<!-- [명시적 인젝션] -->
