@@ -61,7 +61,7 @@ public class MemDaoImp extends JdbcDaoSupport implements MemDAO{
 	}
 
 	/**
-	 * 회원정보를 수정한다.
+	 * 회원정보를 삭제한다.
 	 */
 	@Override
 	public void deleteMethod(int num) {
