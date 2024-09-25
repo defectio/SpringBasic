@@ -98,7 +98,7 @@ public class MemDaoImp implements MemDAO{
 	 */
 	@Override
 	public void deleteMethod(int num) {
-		String sql = "DELETE FROM hr.mem WHERE num= ? ";
+		String sql = "DELETE FROM hr.mem WHERE num= ?";
 		Object[] args = new Object[] {num};
 		
 		jdbcTemplate.update(sql, args);

@@ -45,6 +45,6 @@ public class SpringTest {
 			}
 		}
 		
-	}  //end main
+	}
 
-}  //end class
+}
