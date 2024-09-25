@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--[spring jdbc 사용 -> JdbcDaoSupport 상속 받는 걸로 변경] -->
+	<!-- [1] dataSource 빈 선언 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<!-- DriverManagerDataSource에는 setter로 설정되어 있기 때문에 반드시 property로 넣어야함. -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- [2] JdbcTemplate 빈 선언을 할 필요가 없어짐-->
+	<!-- spring jdbc 사용 -> JdbcTemplate 선언해야함 --> 
+	<!-- MemDaoImp이 JdbcDaoSupport 상속 받음 -> JdbcTemplate 선언할 필요 없음. -->
+	
+	<!-- [2] MemDaoImp 빈 선언  -->
+	<!-- MemDaoImp는 JdbcDaoSupport를 상속받음 => dataSource에 대한 setter 메소드는 JdbcDaoSupport에 선언되어 있음 -->
+	<bean id="dao" class="com.defectio.spring.spring_04_jdbc.sec02_JdbcDaoSupport.MemDaoImp">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>
