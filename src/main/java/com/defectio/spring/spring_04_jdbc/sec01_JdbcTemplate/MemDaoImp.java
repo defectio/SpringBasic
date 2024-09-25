@@ -1,4 +1,4 @@
-package com.defectio.spring.spring_04_jdbc.sec01_template;
+package com.defectio.spring.spring_04_jdbc.sec01_JdbcTemplate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
