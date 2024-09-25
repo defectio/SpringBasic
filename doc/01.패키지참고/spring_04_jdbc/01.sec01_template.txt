@@ -1,0 +1,29 @@
+1. 실습테이블 추가
+  - hr.mem 테이블
+
+
+2. pom.xml - spring jdbc dependency 추가
+  - 스프링 버전과 동일한 버전을 지정한다.
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>5.2.9.RELEASE</version>
+	</dependency>
+	
+	
+3. ojdbc8.jar 추가
+  - lib 하위에 ojdbc8.jar 추가 후 build path 지정
+  
+  
+4. xml 설정 파일 - DataSource 빈 설정
+  - driverClassName, url 주소에 주의
+  
+ 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+  
