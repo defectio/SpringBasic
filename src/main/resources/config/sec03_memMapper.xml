@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <!-- mapper -> 쿼리문들을 모아놓은 xml(설정) 파일 -->
+    <!-- namespace 무조건 사용!!! : namespece로 필요한 쿼리문에 접근함. 비어있는 mapper 파일이더라도 namespace 무조건 선언!! -->
+    <!-- namespace명.쿼리문id명 으로 쿼리문 접근함 -->
+    
+    <!-- configuration.xml 사용한다면 mapper 파일 등록해야 함. -->
+   	<mapper namespace="mem">
+		<!-- resultType : 아래 쿼리문을 실행하고 그 결과값을 받을 객체(타입) 선택 -->
+		<!-- resultType : configuration.xml에서 alias 설정을 통해서도 가능함(dto) -->
+		<!-- 쿼리문 처리결과가 MemDTO의 setter를 통해서 MemDTO에 저장됨. -->
+   		<select id="all" resultType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+   			SELECT * FROM hr.mem order by num desc
+   		</select>
+   		
+   		<!-- [insert,update,delete] : resultType 선언안함(->개수를 리턴하는 거기 때문에 안씀, 쓰면 오류) -->
+   		<!-- parameterType : MemDaoImp insertMethod() 메소드에서 사용되는 매개변수 타입.(=sec03_SqlSessionTemplate.MemDTO 통해서 받는다) -->
+    	<!--  -> MemDTO 타입으로 밑에 쿼리문 완성해서 실행하겠다. -->
+    	<!--  -> MemDTO의 getter로 아래 #{num}, #{name}, #{age}, #{loc} 완성해서 쿼리문 실행함 -->
+    	<!--  -> DTO에 getter 설정이 되어 있어야함. -->
+   		<insert id="insert" parameterType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+   			INSERT INTO hr.mem 
+   			VALUES (#{num}, #{name}, #{age}, #{loc}	)
+   		</insert>
+   		
+   		<!-- DTO(파라미터)의 getName(), getNum()으로 쿼리문 완성  -->
+   		<update id="update" parameterType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+   			UPDATE hr.mem
+   			SET name=#{name}    
+   			WHERE num = #{num}
+   		</update>
+   		
+   		<!-- parameterType : 쿼리문 완성하는데 필요한 값(매개변수)이 있으면 사용해야함. -->
+   		<!-- parameterType이 객체타입(ex. MemDTO)으로 선언되면 내부적으로 getter로 값을 받아온다. -->
+   		<delete id="delete" parameterType="int">
+   			DELETE FROM hr.mem
+   			WHERE num = #{num}
+   		</delete>
+   		
+   		<select id="one" parameterType="int" resultType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+   			SELECT * 
+   			FROM hr.mem 
+   			WHERE num=#{num}
+   		</select>
+   		
+   		<select id="count" resultType="int">
+   			SELECT count(*) FROM hr.mem 
+   		</select>
+   		
+   		<!-- 입력한 숫자 보다 번호가 작은 회원정보 출력 -->
+   		<!-- 조건에 맞는 데이터값을 검색해서 가져오는 경우(범위를 지정해주는 경우) -->
+    	<!-- 컬럼의 값(select 결과값)들을 가져와서 MemDTO의 속성에 저장하려면 MemDTO에 setter 메소드가 반드시 있어야하고, 변수명이 같아야 한다.(auto mapping) -->
+    	<!-- 컬럼값과 MemDTO 멤버변수와 다르면 resultMap을 이용해서 직접 설정해야한다. -->
+   		<select id="search" parameterType="int" resultType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+   			<!-- SELECT * FROM hr.mem WHERE num < #{num} -->
+   			<![CDATA[  SELECT * FROM hr.mem WHERE num < #{num} ]]>
+   		</select>
+   		
+   		<!-- 하나의 컬럼(변수)에 2개값 이상을 넣어야 할 경우 DTO 사용 불가함. 이때는 hashMap-->
+ 		<select id="range" parameterType="java.util.HashMap" resultType="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO">
+ 			<![CDATA[ SELECT * FROM hr.mem WHERE num >= #{start} and num <= #{end} ]]>
+ 			<!-- SELECT * FROM hr.mem WHERE num BETWEEN #{start} and #{end} -->
+ 		</select>
+   
+   	</mapper>

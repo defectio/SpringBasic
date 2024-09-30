@@ -15,3 +15,10 @@
 	</dependency>
 	
 2. mapper 파일 추가
+  - mapper 파일은 resources/ 하위에 위치해야한다.
+  - parameterType, resultType에 객체가 들어갈 경우 class 전체 경로를 지정해야함.
+    (단, configuration.xml 에서 alias 설정시에는 alias로 대체 가능)
+
+3. configuration.xml 파일 추가
+  - typeAlias 설정
+  - mapper 파일 등록

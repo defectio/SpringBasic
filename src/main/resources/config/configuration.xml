@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  	
+  	<!-- db연동(드라이버로딩, 디비서버연결 -> 스프링에서 함.) -->
+  	<!--  mapper에서 사용할 alias 설정은 여기서 설정 -->
+  	<!--  사용할 mapper 등록 -->
+  
+  	<!-- 원래 db연동을 여기서하는데 이제 스프링에서 하니까 여기서 안함 -->
+  	<!-- mappers 등록 -->  
+	<configuration>
+		<!-- alias 설정은 자유 -->
+		<typeAliases>
+			<typeAlias type="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDTO" alias="dto"/>
+		</typeAliases>
+		
+		<!-- configuration.xml에 mapper 파일 등록해야 프로그램 실행됨 -->
+		<mappers>
+			<!-- 쿼리문이 정의된 mapper-xml(설정)파일의 경로를 resource를 이용해서 잡으면 됨-->
+			<mapper resource="config/sec03_memMapper.xml "/>
+<!-- 			<mapper resource="config/sec04_memMapper.xml "/> -->
+<!-- 			<mapper resource="config/sec05_empMapper.xml" /> -->
+		</mappers>
+				
+	</configuration>

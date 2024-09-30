@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- [1] dataSource 빈 선언 -->
+	<!-- maven repository에서 spring-jdbc dependency 추가 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- [2] sqlSessionFactoryBean 빈 선언 : 관리해주는 빈 -->
+	<!-- sqlSessionFactoryBean 빈 선언시 프로퍼티값 2걔(dataSource, mapperLocations) 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- [mapper 파일의 경로 설정] -->
+		<!-- [방법 1] mapperLocations으로 classpath(mapper 경로) 설정. -->
+<!-- 		<property name="mapperLocations"> -->
+			<!-- list 태그로 여러개의 mapper 경로 설정 가능 -->
+<!-- 			<list>   -->
+<!-- 				<value>classpath:config/sec03_memMapper.xml</value> -->
+<!-- 				<value>classpath:example/memMapper.xml</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+		
+		<!-- [방법 2] configuration.xml에 mapper resource 등록해놓고, configLocation 으로 configuration.xml 경로 선언 -->
+		<property name="configLocation">
+			<value>classpath:config/configuration.xml</value>
+		</property>
+	</bean>
+	
+	<!-- [3] SqlSessionTemplate 빈 선언 -->
+	<!-- 쿼리문을 실행하기 위한 sqlSessionTemplate 빈 선언 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 무조건 생성자로 해야됨(정해져 있음) -->
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- [4] MemDaoImp 빈 선언 -->
+	<!-- sqlSession을 실제적으로 사용하는 빈 -->
+	<bean id="dao" class="com.defectio.spring.spring_04_jdbc.sec03_SqlSessionTemplate.MemDaoImp">
+		<!-- MemDaoImp에 sqlSession을 DI -->
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+</beans>
