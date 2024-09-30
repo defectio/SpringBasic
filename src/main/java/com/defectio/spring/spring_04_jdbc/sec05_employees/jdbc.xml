@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- [1] dataSource 빈 선언 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- [2] SqlSessionFactoryBean 빈 선언 -->
+	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/sec05_empMapper.xml</value>
+			</list>
+		</property>
+		<!--  mapperLocations 를 대체함 -->
+		<!--  <property name="configLocation" value="classpath:config/configuration.xml"/>   -->   
+	</bean>
+	
+	<!-- [3] SqlSessionTemplate 빈 선언 -->
+	<!-- 무조건 constructor  -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="factory" />
+	</bean>
+	
+	<!-- [4] EmpDaoImp 빈 선언 -->
+	<bean id="empDao" class="com.defectio.spring.spring_04_jdbc.sec05_employees.EmpDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+</beans>
