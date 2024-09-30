@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- [1] dataSource 빈 선언 -->
+	<!-- maven repository 에 다운 받아야 사용가능 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- 마이바티스(dtd) 연동을 위한 xml설정 파일 2가지 -->
+	<!-- [2] sqlSessionFactoryBean 빈 선언 : 관리해주는 빈 -->
+	<!-- sqlSessionFactoryBean 빈 선언시 프로퍼티값 2걔(dataSource, mapperLocations) 설정-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 방법1. mapperLocations로 classpath 설정 -->
+		<property name="mapperLocations">
+			<list>  
+				<value>classpath:config/sec04_memMapper.xml</value>
+			</list>
+		</property>
+		
+		<!-- 방법2. configLocation 으로 configuration.xml 경로 선언 -->
+		<!-- <property name="configLocation">
+			<value>classpath:config/configuration.xml</value>
+		</property> -->
+	</bean>
+	
+	<!-- template을 이용하는 게 편함-->	
+	
+	<!-- [3] MemDaoImp 빈 선언 -->
+	<bean id="dao" class="com.defectio.spring.spring_04_jdbc.sec04_SqlSessionDaoSupport.MemDaoImp">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
+	
+</beans>

@@ -19,7 +19,7 @@
 		<mappers>
 			<!-- 쿼리문이 정의된 mapper-xml(설정)파일의 경로를 resource를 이용해서 잡으면 됨-->
 			<mapper resource="config/sec03_memMapper.xml "/>
-<!-- 			<mapper resource="config/sec04_memMapper.xml "/> -->
+			<mapper resource="config/sec04_memMapper.xml "/>
 <!-- 			<mapper resource="config/sec05_empMapper.xml" /> -->
 		</mappers>
 				
