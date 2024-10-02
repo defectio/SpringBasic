@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="mem">
+    	<insert id="insert" parameterType="com.defectio.spring.spring_05_tx.sec01_TransactionTemplate.MemDTO">
+    		INSERT INTO hr.mem
+    		VALUES (#{num}, #{name}, #{age}, #{loc})
+    	</insert>
+    </mapper>
