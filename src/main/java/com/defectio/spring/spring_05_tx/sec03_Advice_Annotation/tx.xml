@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- [스프링에서 트랜잭션 처리를 위해 선언적 트랜잭션(<tx:advice>)&annotation를 이용하는 방법] -->
+	
+	<!-- 트랜잭션을 annotaion을 이용해서 처리하겠다. -> 맨 앞에 설정하는게 좋음 -->
+  	<tx:annotation-driven/>
+  
+	<!-- [1] dataSource 빈 선언 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- [2] sqlSessionFactoryBean 빈 선언:관리를 해주는 빈 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:config/spring_05_tx/sec03_memMapper.xml" />
+	</bean>
+	
+	<!-- [3] SqlSessionTemplate 빈 선언 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- [4]  TransactionManager 빈 선언 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- [5] MemDaoImp 빈 선언 -->
+	<bean id="dao" class="com.defectio.spring.spring_05_tx.sec03_Advice_Annotation.MemDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- [6] ServiceImp 빈 선언 -->
+	<bean id="svc" class="com.defectio.spring.spring_05_tx.sec03_Advice_Annotation.ServiceImp">
+		<property name="dao" ref="dao" />
+	</bean>
+
+</beans>
