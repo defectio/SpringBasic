@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+   	<mapper namespace="pro">
+		<insert id="insert" parameterType="com.defectio.spring.spring_04_jdbc.sec06_product.ProductDTO">
+			INSERT INTO hr.product
+			VALUES	(#{id}, #{name}, #{qty}, #{price}, #{company})
+		</insert>
+		
+		<select id="list" resultType="com.defectio.spring.spring_04_jdbc.sec06_product.ProductDTO">
+			SELECT *
+			FROM hr.product
+		</select>
+		
+		<select id="search" parameterType="String" resultType="com.defectio.spring.spring_04_jdbc.sec06_product.ProductDTO">
+			SELECT *
+			FROM hr.product
+			WHERE name=#{name}
+		</select>
+		
+		<delete id="delete" parameterType="String">
+			DELETE FROM hr.product
+			WHERE name=#{name}
+		</delete>
+		
+		<select id="count" resultType="int">
+			SELECT count(*)
+			FROM hr.product
+		</select>
+		
+		<update id="update" parameterType="com.defectio.spring.spring_04_jdbc.sec06_product.ProductDTO">
+			UPDATE hr.product
+			SET qty=#{qty}
+			WHERE name=#{name}		
+		</update>
+		
+   	</mapper>
