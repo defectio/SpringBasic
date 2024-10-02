@@ -18,9 +18,9 @@
 		<!-- configuration.xml에 mapper 파일 등록해야 프로그램 실행됨 -->
 		<mappers>
 			<!-- 쿼리문이 정의된 mapper-xml(설정)파일의 경로를 resource를 이용해서 잡으면 됨-->
-			<mapper resource="config/sec03_memMapper.xml "/>
-			<mapper resource="config/sec04_memMapper.xml "/>
-<!-- 			<mapper resource="config/sec05_empMapper.xml" /> -->
+			<mapper resource="config/spring_04_jdbc/sec03_memMapper.xml "/>
+<!-- 			<mapper resource="config/spring_04_jdbc/sec04_memMapper.xml "/> -->
+<!-- 			<mapper resource="config/spring_04_jdbc/sec05_empMapper.xml" /> -->
 		</mappers>
 				
 	</configuration>

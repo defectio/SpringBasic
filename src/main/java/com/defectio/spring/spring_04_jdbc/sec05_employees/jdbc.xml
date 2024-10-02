@@ -16,11 +16,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:config/sec05_empMapper.xml</value>
+				<value>classpath:config/spring_04_jdbc/sec05_empMapper.xml</value>
 			</list>
 		</property>
 		<!--  mapperLocations 를 대체함 -->
-		<!--  <property name="configLocation" value="classpath:config/configuration.xml"/>   -->   
+		<!--  <property name="configLocation" value="classpath:config/spring_04_jdbc/configuration.xml"/>   -->   
 	</bean>
 	
 	<!-- [3] SqlSessionTemplate 빈 선언 -->

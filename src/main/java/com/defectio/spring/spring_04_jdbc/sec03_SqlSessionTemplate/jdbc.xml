@@ -21,14 +21,14 @@
 <!-- 		<property name="mapperLocations"> -->
 			<!-- list 태그로 여러개의 mapper 경로 설정 가능 -->
 <!-- 			<list>   -->
-<!-- 				<value>classpath:config/sec03_memMapper.xml</value> -->
+<!-- 				<value>classpath:config/spring_04_jdbc/sec03_memMapper.xml</value> -->
 <!-- 				<value>classpath:example/memMapper.xml</value> -->
 <!-- 			</list> -->
 <!-- 		</property> -->
 		
 		<!-- [방법 2] configuration.xml에 mapper resource 등록해놓고, configLocation 으로 configuration.xml 경로 선언 -->
 		<property name="configLocation">
-			<value>classpath:config/configuration.xml</value>
+			<value>classpath:config/spring_04_jdbc/configuration.xml</value>
 		</property>
 	</bean>
 	

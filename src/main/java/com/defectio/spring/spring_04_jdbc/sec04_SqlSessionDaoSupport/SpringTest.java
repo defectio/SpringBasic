@@ -19,7 +19,7 @@ public class SpringTest {
 		MemDAO dao = context.getBean("dao", MemDAO.class);
 		
 		// 회원정보 등록
-		dao.insertMethod(new MemDTO(6, "백승호", 25, "런던"));
+//		dao.insertMethod(new MemDTO(6, "백승호", 25, "런던"));
 		
 		// 회원정보 수정
 //		dao.updateMethod(new MemDTO(6, "백승호2"));
