@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- [스프링에서 트랜잭션 처리를 위해 선언적 트랜잭션(<tx:advice>)&aop를 이용하는 방법] -->
+	
+	<!-- [1] dataSource 빈 선언 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- [2] sqlSessionFactoryBean 빈 선언:관리를 해주는 빈 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:config/spring_05_tx/sec02_memMapper.xml" />
+	</bean>
+	
+	<!-- [3] SqlSessionTemplate 빈 선언 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- [4]  TransactionManager 빈 선언 -->
+	<!-- PlatformTransactionManager(인터페이스) -> DataSourceTransactionManager(구현클래스) -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 여기까지는 똑같음 -->
+	
+	<!-- [5-sec01] TransactionTemplate 빈 선언 -->
+	<!-- <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean> -->
+	
+	<!-- [5-sec02] 선언적 트랜잭션 : <tx:advice>태그를 이용한 트랜잭션 처리 -->
+	<!-- namespace 탭에서 tx 체크 -->
+	<!-- <tx:advice> : 트랜잭션을 적용할 때 사용될 advisor를 생성함. -->
+	<!-- id : 생성될 트랜잭션 advisor의 식별 값 -->
+	<!-- transaction-manager : 스프링의 PlatformTransactionManager을 구현한 DataSourceTransactionManager 빈을 설정 -->
+	<!-- <tx:advice> 태그는 advisor만 생성하는 것이지 실제로 트랜잭션을 적용하는 것이 아니므로 AOP를 통해서 설정해야한다. -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- <tx:method> : <tx:attributes>의 자식 태그로 트랜잭션을 설정할 메소드 및 트랜잭션 속성을 설정한다. -->
+			<!-- Process로 끝나는 메소드 실행중에 exception이 발생하면 rollback 시켜주겠다.-->
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+			<!-- <tx:method>의 속성 -->
+			<!-- name : 트랜잭션이 적용될 메소드 이름을 명시. * 사용 가능 -->
+			<!-- propagation : 트랜잭션의 전파 규칙을 설정 -->
+			<!-- isoloation : 트랜잭션의 격리 레벨을 설정 -->
+			<!-- read-only : 읽기 전용 여부를 설정 -->
+			<!-- no-rollback-for : 트랜잭션을 롤백하지 않을 예외 타입을 설정 -->
+			<!-- rollback-for : 트랜잭션을 롤백할 예외 타입을 설정 -->
+			<!-- timeout : 트랜잭션의 타임 아웃 시간을 초 단위로 설정 -->
+			<tx:method name="update*" 
+				 				propagation="REQUIRED" 
+								isolation="READ_COMMITTED" 
+								timeout="10" 
+								read-only="false" 
+								rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 트랜잭션 처리는 AOP로 한다. -->
+	<!-- namespaces 탭에서 aop 체크-->
+	<aop:config>                                                        <!-- ~Process로 끝나는 모든 메소드에 트랜잭션 적용 -->
+		<aop:pointcut expression="execution(* com.defectio.spring.spring_05_tx.sec02_Advice_AOP.ServiceImp.*Process(..))" id="aa" />
+		<!-- pointcut에 설정한 메소드에 transaction 적용 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa"/>
+	</aop:config>
+	
+	<!-- [6] MemDaoImp 빈 선언 -->
+	<bean id="dao" class="com.defectio.spring.spring_05_tx.sec02_Advice_AOP.MemDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- [7] ServiceImp 빈 선언 -->
+	<bean id="svc" class="com.defectio.spring.spring_05_tx.sec02_Advice_AOP.ServiceImp">
+		<property name="dao" ref="dao" />
+	</bean>
+
+</beans>
