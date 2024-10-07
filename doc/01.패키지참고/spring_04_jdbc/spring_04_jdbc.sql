@@ -1,4 +1,8 @@
 -- spring_04_jdbc, spring_05_tx에서 필요한 table
+
+--drop table mem;
+--drop sequence mem_num_seq;
+
 CREATE TABLE mem(
     num number(10),
     name varchar2(30),
@@ -13,3 +17,4 @@ nocycle;
 
 ALTER TABLE mem
 ADD CONSTRAINT mem_num_pk PRIMARY KEY(num);
+
